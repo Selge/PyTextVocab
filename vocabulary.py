@@ -40,10 +40,7 @@ def sentence_tokenization():
 
 def word_sentence_tokenization():
     sent_token = sentence_tokenization()
-    word_sent_tokens = []
-    for token in sent_token:
-        word_sent_token = nltk.word_tokenize(token)
-        word_sent_tokens.append(word_sent_token)
+    word_sent_tokens = [nltk.word_tokenize(token) for token in sent_token]
     return word_sent_tokens
 
 
