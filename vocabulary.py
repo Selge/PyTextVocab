@@ -27,7 +27,7 @@ class Text:
         return translated_text
 
 
-filename = 'Rapunzel'
+filename = 'Dracula'
 income_file = f'{filename}.txt'
 alien_text = Text.initiate_text(income_file)
 
@@ -38,14 +38,23 @@ def sentence_tokenization():
     return sent_token
 
 
+def word_sentence_tokenization():
+    sent_token = sentence_tokenization()
+    word_sent_tokens = []
+    for token in sent_token:
+        word_sent_token = nltk.word_tokenize(token)
+        word_sent_tokens.append(word_sent_token)
+    return word_sent_tokens
+
+
 def word_tokenization():
     raw_text = alien_text
     word_token = nltk.word_tokenize(raw_text)
-    create_set(word_token)
+    return word_token
 
 
-def create_set(word_token):
-    unique_tokens = set(word_token)
+def create_unique_set():
+    unique_tokens = set(word_tokenization())
     print(unique_tokens)
 
 
@@ -56,4 +65,4 @@ def save_to_file():
 
 
 if __name__ == '__main__':
-    word_tokenization()
+    word_sentence_tokenization()
