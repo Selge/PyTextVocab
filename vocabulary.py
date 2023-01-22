@@ -3,6 +3,8 @@ import codecs
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk.corpus import wordnet
 from langdetect import detect
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
 
 
 class Text:
