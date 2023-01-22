@@ -8,6 +8,9 @@ import pandas as pd
 from googletrans import Translator
 
 
+translator = Translator()
+
+
 class Text:
     def initiate_text(filename):
         with codecs.open(f'{filename}', 'r', 'utf_8_sig') as text_source:
@@ -20,13 +23,21 @@ class Text:
 
     def translate(raw_text, lang_suppose, dest=None):
         TARGET_LANG = 'en'
-        translated_text = Translator.translate(raw_text, src=lang_suppose, dest=TARGET_LANG)
+        translated_text = translator.translate(raw_text, src=lang_suppose, dest=TARGET_LANG)
         return translated_text
 
 
 filename = 'Rapunzel'
 income_file = f'{filename}.txt'
 alien_text = Text.initiate_text(income_file)
+
+
+def sentence_tokenisation():
+    raw_text = alien_text
+    sent_token = nltk.sent_tokenize(raw_text)
+    with open(f'{filename}_sent_tokens.txt', 'w', encoding="utf-8") as file:
+        for token in sent_token:
+            file.write(token + '\n')
 
 
 def word_tokenization():
