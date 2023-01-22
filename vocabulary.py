@@ -1,5 +1,7 @@
 import nltk
 import codecs
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.corpus import wordnet
 from langdetect import detect
 
 
