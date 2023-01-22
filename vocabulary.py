@@ -2,10 +2,7 @@ import re
 import nltk
 import codecs
 from nltk.stem import PorterStemmer, WordNetLemmatizer
-from nltk.corpus import wordnet
 from langdetect import detect
-from sklearn.feature_extraction.text import TfidfVectorizer
-import pandas as pd
 
 
 class Text:
@@ -63,7 +60,7 @@ def create_vocabulary():
         l = lemme.lemmatize(token)
         s = stemme.stem(token)
         vocab.append(f'{token.lower()}: L: {l} S:{s}')
-    print(vocab)
+    return vocab
 
 
 def save_to_file():
