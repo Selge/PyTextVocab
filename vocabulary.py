@@ -1,3 +1,4 @@
+import re
 import nltk
 import codecs
 from nltk.stem import PorterStemmer, WordNetLemmatizer
@@ -6,9 +7,6 @@ from langdetect import detect
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 from googletrans import Translator
-
-
-translator = Translator()
 
 
 class Text:
@@ -20,11 +18,6 @@ class Text:
     def language_detect(raw_text):
         lang_suppose = detect(raw_text)
         return lang_suppose
-
-    def translate(raw_text, lang_suppose, dest=None):
-        TARGET_LANG = 'en'
-        translated_text = translator.translate(raw_text, src=lang_suppose, dest=TARGET_LANG)
-        return translated_text
 
 
 filename = 'Dracula'
@@ -44,15 +37,22 @@ def word_sentence_tokenization():
     return word_sent_tokens
 
 
+def regex():
+    raw_sentence = alien_text
+    pattern = r"[^\w]"
+    clean_token = re.sub(pattern, " ", raw_sentence)
+    return clean_token
+
+
 def word_tokenization():
-    raw_text = alien_text
+    raw_text = regex()
     word_token = nltk.word_tokenize(raw_text)
     return word_token
 
 
 def create_unique_set():
     unique_tokens = set(word_tokenization())
-    print(unique_tokens)
+    return unique_tokens
 
 
 def save_to_file():
@@ -62,4 +62,4 @@ def save_to_file():
 
 
 if __name__ == '__main__':
-    word_sentence_tokenization()
+    word_tokenization()
