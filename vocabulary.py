@@ -48,7 +48,7 @@ def word_tokenization():
 
 def create_unique_set():
     unique_tokens = set(word_tokenization())
-    return unique_tokens
+    return sorted(unique_tokens)
 
 
 def create_vocabulary():
@@ -59,15 +59,16 @@ def create_vocabulary():
     for token in final_tokens:
         l = lemme.lemmatize(token)
         s = stemme.stem(token)
-        vocab.append(f'{token.lower()}: L: {l} S:{s}')
+        vocab.append(f'Text: <<{token.lower()}>> -> Lem: {l}, Stem: {s}')
     return vocab
 
 
 def save_to_file():
-    with open(f'{filename}_sent_tokens.txt', 'w', encoding="utf-8") as file:
-        for token in sent_token:
+    vocab = create_vocabulary()
+    with open(f'{filename}_vocabulary.txt', 'w', encoding="utf-8") as file:
+        for token in vocab:
             file.write(token + '\n')
 
 
 if __name__ == '__main__':
-    create_vocabulary()
+    save_to_file()
