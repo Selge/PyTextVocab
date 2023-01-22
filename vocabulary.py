@@ -6,7 +6,6 @@ from nltk.corpus import wordnet
 from langdetect import detect
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
-from googletrans import Translator
 
 
 class Text:
@@ -55,6 +54,18 @@ def create_unique_set():
     return unique_tokens
 
 
+def create_vocabulary():
+    lemme = WordNetLemmatizer()
+    stemme = PorterStemmer()
+    final_tokens = create_unique_set()
+    vocab = []
+    for token in final_tokens:
+        l = lemme.lemmatize(token)
+        s = stemme.stem(token)
+        vocab.append(f'{token.lower()}: L: {l} S:{s}')
+    print(vocab)
+
+
 def save_to_file():
     with open(f'{filename}_sent_tokens.txt', 'w', encoding="utf-8") as file:
         for token in sent_token:
@@ -62,4 +73,4 @@ def save_to_file():
 
 
 if __name__ == '__main__':
-    word_tokenization()
+    create_vocabulary()
