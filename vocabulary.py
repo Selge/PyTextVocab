@@ -32,7 +32,7 @@ income_file = f'{filename}.txt'
 alien_text = Text.initiate_text(income_file)
 
 
-def sentence_tokenisation():
+def sentence_tokenization():
     raw_text = alien_text
     sent_token = nltk.sent_tokenize(raw_text)
     return sent_token
@@ -41,8 +41,12 @@ def sentence_tokenisation():
 def word_tokenization():
     raw_text = alien_text
     word_token = nltk.word_tokenize(raw_text)
-    # return word_token
-    print(word_token)
+    create_set(word_token)
+
+
+def create_set(word_token):
+    unique_tokens = set(word_token)
+    print(unique_tokens)
 
 
 def save_to_file():
