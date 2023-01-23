@@ -16,7 +16,7 @@ class Text:
         return lang_suppose
 
 
-filename = 'Dracula'
+filename = 'Carmilla'
 income_file = f'{filename}.txt'
 alien_text = Text.initiate_text(income_file)
 
